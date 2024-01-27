@@ -22,13 +22,10 @@ export const authOptions: AuthOptions = {
     signIn: async () => {
       return true
     }
-  }
-  // pages: {
-  //   signIn: "/login",
-  //   error: "/login",
-  //   verifyRequest: "/login",
-  //   newUser: "/login",
-  // },
+  },
+  pages: {
+    signIn: "/login",
+  },
 };
 
 export function auth(
