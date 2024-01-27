@@ -1,13 +1,13 @@
 import "@/styles/globals.css"
 import { Metadata } from "next"
 import { Inter } from "next/font/google"
+import { ApplicationProvider } from "@/ApplicationProvider"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import {ApplicationProvider} from '@/ApplicationProvider'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -38,10 +38,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head />
         <body className={cn("min-h-screen bg-background", inter.className)}>
-          <div className="relative flex min-h-screen flex-col">
-            <SiteHeader />
-            <div className="flex flex-1 items-center"><ApplicationProvider>{children}</ApplicationProvider></div>
-          </div>
+          <ApplicationProvider>
+            <div className="relative flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex flex-1 items-center">{children}</div>
+            </div>
+          </ApplicationProvider>
           <TailwindIndicator />
         </body>
       </html>

@@ -18,6 +18,11 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
   },
+  callbacks: {
+    signIn: async () => {
+      return true
+    }
+  }
   // pages: {
   //   signIn: "/login",
   //   error: "/login",
