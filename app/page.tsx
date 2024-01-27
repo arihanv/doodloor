@@ -2,15 +2,17 @@ import { Cedarville_Cursive } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
+import { auth } from "@/authOptions";
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 import controlImg from "../assets/control.png"
-import { cn } from "../lib/utils"
+import { cn } from '../lib/utils';
 
 const cursive = Cedarville_Cursive({ weight: "400", subsets: ["latin"] })
 
-export default function IndexPage() {
+export default async function IndexPage() {
+  const session = await auth();
   return (
     <section className="container grid max-h-screen items-center justify-center gap-6 pb-8 pt-6">
       <div className="flex max-w-3xl flex-col items-center gap-4">
@@ -69,12 +71,12 @@ export default function IndexPage() {
             </span>
           </div>
           <div className="appear absolute flex size-full flex-col rounded-xl bg-black/70">
-            <Button
-              variant={"secondary"}
-              className="m-auto flex rounded-md border-t-2 border-orange-500 bg-orange-600 text-lg font-medium transition-colors duration-200 ease-in-out hover:border-orange-400 hover:bg-orange-500 "
+            <Link
+              href={session ? "/studio" : "/api/auth/signin"}
+              className={cn(buttonVariants({variant: "secondary"}), "m-auto flex rounded-md border-t-2 border-orange-500 bg-orange-600 text-lg font-medium transition-colors duration-200 ease-in-out hover:border-orange-400 hover:bg-orange-500")}
             >
               <span className="font-medium text-white">Try For Free!</span>
-            </Button>
+            </Link>
           </div>
         </div>
       </div>
