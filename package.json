@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "shadcn": "bunx shadcn-ui@latest add",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -23,6 +24,7 @@
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-sketch-canvas": "^6.2.0",
     "sharp": "^0.31.3",
     "tailwind-merge": "^1.13.2",
     "tailwindcss-animate": "^1.0.6"
