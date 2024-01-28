@@ -1,18 +1,25 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Next.js",
+  name: "Doodloor",
   description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
+    "Turn your doodles into masterpieces with AI Image Generation.",
   mainNav: [
     {
       title: "Home",
       href: "/",
     },
+    {
+      title: "Studio",
+      href: "/studio",
+    },
+    {
+      title: "Gallery",
+      href: "/gallery",
+    },
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    twitter: "https://twitter.com/ar1hanv",
+    github: "https://github.com/arihanv/doodloor",
   },
 }

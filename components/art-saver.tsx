@@ -1,8 +1,6 @@
 import React from "react"
-import Image from "next/image"
 import { Check, Download, X } from "lucide-react"
 import { useSession } from "next-auth/react"
-import ReactParallaxTilt from "react-parallax-tilt"
 
 import { cn } from "@/lib/utils"
 import {
@@ -13,6 +11,7 @@ import {
 
 import { Button } from "./ui/button"
 import Link from "next/link"
+import TiltCard from "./tilt-card"
 
 type Props = {
   imageBlob: Blob
@@ -48,27 +47,7 @@ export default function ArtSaver({ imageBlob, prompt }: Props) {
           </Button>
         </DialogTrigger>
         <DialogContent className="border-none bg-transparent shadow-none sm:max-w-[425px] ">
-          <ReactParallaxTilt
-            className="overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-b from-zinc-800/70 via-zinc-900 to-zinc-900/80 imgCard"
-            scale={1.1}
-            glareEnable
-          >
-            <div className="flex flex-col items-center rounded-xl">
-              <div className="py-2 font-medium text-white/50">
-                {"🎨 by " + session.data?.user?.name || "Anonymous"}
-              </div>
-              <Image
-                alt="Generated Image"
-                className="size-full"
-                src={URL.createObjectURL(imageBlob)}
-                height={50}
-                width={50}
-              ></Image>
-              <div className="py-2 font-medium text-white/50">
-                &quot;{prompt}&quot;
-              </div>
-            </div>
-          </ReactParallaxTilt>
+          <TiltCard image_url={URL.createObjectURL(imageBlob)} user_name={session.data?.user?.name || "Anonymous"} prompt={prompt} />
           <div
             className={cn(
               "appearQuick fixed inset-x-0 bottom-0 z-[51] mx-auto mb-5 mt-10 grid w-full max-w-lg translate-y-24 place-items-center rounded-lg border border-zinc-800/50 border-b-zinc-900/40 border-t-zinc-700/60 bg-gradient-to-b from-zinc-700/40 via-zinc-800/50 to-zinc-800/40 px-5 py-2",
