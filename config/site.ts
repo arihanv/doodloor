@@ -2,8 +2,7 @@ export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
   name: "Doodloor",
-  description:
-    "Turn your doodles into masterpieces with AI Image Generation.",
+  description: "Turn your doodles into masterpieces with AI Image Generation.",
   mainNav: [
     {
       title: "Home",

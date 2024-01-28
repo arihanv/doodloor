@@ -43,7 +43,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <SiteHeader />
               <div className="flex flex-1">{children}</div>
             </div>
-            <Toaster position="top-center"/>
+            <Toaster position="top-center" />
           </ApplicationProvider>
           <TailwindIndicator />
         </body>

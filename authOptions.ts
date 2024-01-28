@@ -1,11 +1,10 @@
-import { AuthOptions } from "next-auth";
-import { getServerSession } from "next-auth";
-import GoogleProvider from 'next-auth/providers/google'
 import {
   GetServerSidePropsContext,
   NextApiRequest,
   NextApiResponse,
-} from "next";
+} from "next"
+import { AuthOptions, getServerSession } from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -21,12 +20,12 @@ export const authOptions: AuthOptions = {
   callbacks: {
     signIn: async () => {
       return true
-    }
+    },
   },
   pages: {
     signIn: "/login",
   },
-};
+}
 
 export function auth(
   ...args:
@@ -34,5 +33,5 @@ export function auth(
     | [NextApiRequest, NextApiResponse]
     | []
 ) {
-  return getServerSession(...args, authOptions);
+  return getServerSession(...args, authOptions)
 }

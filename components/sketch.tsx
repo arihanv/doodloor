@@ -1,12 +1,12 @@
-import { ReactSketchCanvas } from "react-sketch-canvas";
-import { useRef, useState } from "react";
+import { useRef, useState } from "react"
+import { ReactSketchCanvas } from "react-sketch-canvas"
 
 type Props = {
-    setImage: React.Dispatch<React.SetStateAction<any>>;
-};
+  setImage: React.Dispatch<React.SetStateAction<any>>
+}
 
-export default function SketchBoard({setImage}: Props) {
-  const drawingCanvas = useRef(null);
+export default function SketchBoard({ setImage }: Props) {
+  const drawingCanvas = useRef(null)
   return (
     <div className="relative h-full">
       <ReactSketchCanvas
@@ -16,7 +16,9 @@ export default function SketchBoard({setImage}: Props) {
         className="relative h-full !rounded-none !border-none bg-black/50"
         strokeColor="white"
       />
-      <div className="absolute inset-0 -z-10 m-auto flex select-none items-center justify-center opacity-30">Draw Here</div>
+      <div className="absolute inset-0 -z-10 m-auto flex select-none items-center justify-center opacity-30">
+        Draw Here
+      </div>
       {/* { (
         <button
             className="!text-white"
@@ -37,5 +39,5 @@ export default function SketchBoard({setImage}: Props) {
         </button>
       )} */}
     </div>
-  );
+  )
 }

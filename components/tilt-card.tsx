@@ -3,6 +3,7 @@
 import React from "react"
 import Image from "next/image"
 import ReactParallaxTilt from "react-parallax-tilt"
+
 import { cn } from "@/lib/utils"
 
 type Props = {
@@ -27,7 +28,10 @@ export default function TiltCard({
 }: Props) {
   return (
     <ReactParallaxTilt
-      className={cn("overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-b from-zinc-800/70 via-zinc-900 to-zinc-900/80", {"imgCard": appearAnimation})}
+      className={cn(
+        "overflow-hidden rounded-xl border border-zinc-800 bg-gradient-to-b from-zinc-800/70 via-zinc-900 to-zinc-900/80",
+        { imgCard: appearAnimation }
+      )}
       scale={scale ?? 1.1}
       glareEnable
     >
