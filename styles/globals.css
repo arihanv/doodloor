@@ -64,6 +64,22 @@
   animation: appear 500ms 0.5s ease forwards;
 }
 
+.imgCard{
+  animation: moveAround 500ms ease-in-out;
+}
+
+@keyframes moveAround {
+  0% {
+    transform: perspective(1000px) rotateX(20deg) rotateY(20deg) scale3d(1, 1, 1);
+  }
+  50% {
+    transform: perspective(1000px) rotateX(-10deg) rotateY(-10deg) scale3d(1, 1, 1);
+  }
+  100% {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+  }
+}
+
 @keyframes appear {
   0% {
     opacity: 0;

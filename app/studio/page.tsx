@@ -124,13 +124,7 @@ export default function StudioPage({}: Props) {
               <SendIcon />
             </span>
           </Button>
-          <Button
-            className=" border border-green-700/20 bg-green-800/20 hover:bg-green-800/50"
-            variant={"outline"}
-            size="icon"
-          >
-            <Check />
-          </Button>
+          <ArtSaver imageUrl={imageUrl} prompt={prompt} />
         </div>
       </div>
     </div>
