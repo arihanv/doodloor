@@ -32,7 +32,7 @@ export default function StudioPage({}: Props) {
       })
 
     const start = new Date().getTime()
-    const res = await fetch("/api/file", {
+    const res = await fetch("/api/generateImage", {
       method: "POST",
       body: JSON.stringify({
         image: image,

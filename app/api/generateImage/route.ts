@@ -1,5 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server"
 
+// Avoid Serverless Function Timeout
+export const runtime = 'edge';
+
 export const POST = async (req: Request) => {
   const body = await req.json()
 
