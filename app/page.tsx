@@ -6,7 +6,8 @@ import { auth } from "@/authOptions";
 
 import { Button, buttonVariants } from "@/components/ui/button"
 
-import controlImg from "../assets/control.png"
+import inputExample from "../assets/input-example.png"
+import outputExample from "../assets/output-example.png"
 import { cn } from '../lib/utils';
 
 const cursive = Cedarville_Cursive({ weight: "400", subsets: ["latin"] })
@@ -53,21 +54,21 @@ export default async function IndexPage() {
             <div className="grid size-full flex-1 grid-cols-2 gap-5 ">
               <Image
                 alt="scribble"
-                src={controlImg}
+                src={inputExample}
                 width={0}
                 height={0}
                 className="h-full rounded-lg border-2 border-zinc-800/50"
               />
               <Image
                 alt="scribble"
-                src={controlImg}
+                src={outputExample}
                 width={0}
                 height={0}
                 className="fadeIn botImage h-full overflow-hidden rounded-lg border-2 border-zinc-800/50"
               />
             </div>
             <span className="flex w-full justify-center rounded-lg border-2 border-zinc-800/50 bg-zinc-900/20 py-1 font-medium text-white">
-              &quot;A bedroom in space&quot;
+              &quot;A dude with a sharp jawline and curly hair&quot;
             </span>
           </div>
           <div className="appear absolute flex size-full flex-col rounded-xl bg-black/70">

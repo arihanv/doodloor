@@ -82,7 +82,7 @@ export default function StudioPage({}: Props) {
               </div>
             </div>
           </div>
-          <div className="relative h-fit flex-1 overflow-hidden rounded-lg border border-input">
+          <div className="relative h-[25rem] flex-1 overflow-hidden rounded-lg border border-input">
             {imageUrl && (
               <Image
                 width={50}
