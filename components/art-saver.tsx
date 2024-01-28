@@ -47,7 +47,7 @@ export default function ArtSaver({ imageBlob, prompt }: Props) {
           </Button>
         </DialogTrigger>
         <DialogContent className="border-none bg-transparent shadow-none sm:max-w-[425px] ">
-          <TiltCard image_url={URL.createObjectURL(imageBlob)} user_name={session.data?.user?.name || "Anonymous"} prompt={prompt} />
+          <TiltCard appearAnimation image_url={URL.createObjectURL(imageBlob)} user_name={session.data?.user?.name || "Anonymous"} prompt={prompt} />
           <div
             className={cn(
               "appearQuick fixed inset-x-0 bottom-0 z-[51] mx-auto mb-5 mt-10 grid w-full max-w-lg translate-y-24 place-items-center rounded-lg border border-zinc-800/50 border-b-zinc-900/40 border-t-zinc-700/60 bg-gradient-to-b from-zinc-700/40 via-zinc-800/50 to-zinc-800/40 px-5 py-2",

@@ -56,12 +56,12 @@
 
 .appear {
   opacity: 0;
-  animation: appear 1000ms 2.5s ease forwards;
+  animation: appear 1000ms 2s ease forwards;
 }
 
 .appearQuick {
   opacity: 0;
-  animation: appear 500ms 0.5s ease forwards;
+  animation: appear 500ms 0.2s ease forwards;
 }
 
 .imgCard{

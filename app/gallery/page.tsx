@@ -19,7 +19,7 @@ export default async function Gallery({}: Props) {
 const { data, error } = await supabase.from('gallery').select('*');
 const galleryData: GalleryRow[] | null = data || null;
   return (
-    <section className="container grid max-h-screen gap-6 pb-8 pt-6">
+    <section className="container grid max-h-screen gap-6 pb-8 pt-6 appearQuick">
       <div className="grid grid-cols-4 flex-col gap-4">{
         galleryData?.map((row: GalleryRow) => {
             return (
