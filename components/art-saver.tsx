@@ -7,6 +7,7 @@ import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { revalidateGallery } from "@/app/studio/actions"
 
 import TiltCard from "./tilt-card"
 import { Button } from "./ui/button"
@@ -17,6 +18,7 @@ type Props = {
 }
 
 export default function ArtSaver({ imageBlob, prompt }: Props) {
+  const submissionRef = React.useRef<boolean>(false)
   const [open, setOpen] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const router = useRouter()
@@ -35,12 +37,12 @@ export default function ArtSaver({ imageBlob, prompt }: Props) {
     toast.promise(res, {
       loading: "Uploading...",
       success: () => {
-        router.push("/gallery", )
+        revalidateGallery()
+        router.push("/gallery")
         return "Uploaded!"
       },
       error: "Error uploading image",
     })
-    setLoading(false)
     return
   }
 

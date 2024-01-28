@@ -36,11 +36,12 @@ export default function TiltCard({
           {"🎨 by " + user_name || "Anonymous"}
         </div>
         <Image
+          unoptimized
           alt="Generated Image"
           className="size-full"
           src={image_url}
-          height={imageSettings?.height ?? 50}
-          width={imageSettings?.width ?? 50}
+          height={imageSettings?.height ?? 40}
+          width={imageSettings?.width ?? 40}
         ></Image>
         <div className="px-3 py-2">
           <span className="line-clamp-3 text-center text-sm font-medium text-white/50">

@@ -2,7 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
-import { Check, Redo, RotateCw, SendIcon, Undo } from "lucide-react"
+import { Redo, RotateCw, SendIcon, Undo } from "lucide-react"
 import { ReactSketchCanvas } from "react-sketch-canvas"
 
 import { Button } from "@/components/ui/button"
@@ -14,7 +14,8 @@ import { cn } from "../../lib/utils"
 type Props = {}
 
 export default function StudioPage({}: Props) {
-  const [imageUrl, setImageUrl] = React.useState("")
+  const [imageBlob, setImageBlob] = React.useState<undefined | Blob>()
+
   const [timeDiff, setTimeDiff] = React.useState<undefined | number>()
   const [prompt, setPrompt] = React.useState("")
   const drawingCanvas = React.useRef(null)
@@ -42,8 +43,7 @@ export default function StudioPage({}: Props) {
     setTimeDiff((end - start) / 1000)
 
     const img_blob = await res.blob()
-    const resImageUrl = URL.createObjectURL(img_blob)
-    setImageUrl(resImageUrl)
+    setImageBlob(img_blob)
     setLoading(false)
   }
 
@@ -82,18 +82,22 @@ export default function StudioPage({}: Props) {
               </div>
             </div>
           </div>
-          <div className="relative h-[25rem] flex-1 overflow-hidden rounded-lg border border-input">
-            {imageUrl && (
-              <Image
-                width={50}
-                className={cn("size-full transition-all", {
-                  "blur-md animate-pulse transition-all": loading,
-                })}
-                height={50}
-                alt="Generated image"
-                src={imageUrl}
-              ></Image>
-            )}
+          <div className="relative h-[25rem] flex-1 select-none overflow-hidden rounded-lg border border-input">
+            <div
+              className={cn("size-full transition-all", {
+                "blur-md animate-pulse transition-all bg-primary/10": loading,
+              })}
+            >
+              {imageBlob && (
+                <Image
+                  width={50}
+                  className="size-full"
+                  height={50}
+                  alt="Generated image"
+                  src={URL.createObjectURL(imageBlob)}
+                />
+              )}
+            </div>
             {timeDiff && (
               <div
                 className={cn(
@@ -102,6 +106,11 @@ export default function StudioPage({}: Props) {
                 )}
               >
                 {timeDiff}s
+              </div>
+            )}
+            {!imageBlob && (
+              <div className="absolute inset-0 -z-10 m-auto flex select-none items-center justify-center opacity-30">
+                Generated Image
               </div>
             )}
           </div>
@@ -124,7 +133,7 @@ export default function StudioPage({}: Props) {
               <SendIcon />
             </span>
           </Button>
-          <ArtSaver imageUrl={imageUrl} prompt={prompt} />
+          {imageBlob && <ArtSaver imageBlob={imageBlob} prompt={prompt} />}
         </div>
       </div>
     </div>

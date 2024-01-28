@@ -1,19 +1,19 @@
 import { Cedarville_Cursive } from "next/font/google"
 import Image from "next/image"
 import Link from "next/link"
+import { auth } from "@/authOptions"
 import { ArrowUpRight } from "lucide-react"
-import { auth } from "@/authOptions";
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 import inputExample from "../assets/input-example.png"
 import outputExample from "../assets/output-example.png"
-import { cn } from '../lib/utils';
+import { cn } from "../lib/utils"
 
 const cursive = Cedarville_Cursive({ weight: "400", subsets: ["latin"] })
 
 export default async function IndexPage() {
-  const session = await auth();
+  const session = await auth()
   return (
     <section className="container grid max-h-screen items-center justify-center gap-6 pb-8 pt-6">
       <div className="flex max-w-3xl flex-col items-center gap-4">
@@ -64,7 +64,7 @@ export default async function IndexPage() {
                 src={outputExample}
                 width={0}
                 height={0}
-                className="fadeIn botImage h-full overflow-hidden rounded-lg border-2 border-zinc-800/50"
+                className="botImage h-full overflow-hidden rounded-lg border-2 border-zinc-800/50"
               />
             </div>
             <span className="flex w-full justify-center rounded-lg border-2 border-zinc-800/50 bg-zinc-900/20 py-1 font-medium text-white">
@@ -74,7 +74,10 @@ export default async function IndexPage() {
           <div className="appear absolute flex size-full flex-col rounded-xl bg-black/70">
             <Link
               href={session ? "/studio" : "/api/auth/signin"}
-              className={cn(buttonVariants({variant: "secondary"}), "m-auto flex rounded-md border-t-2 border-orange-500 bg-orange-600 text-lg font-medium transition-colors duration-200 ease-in-out hover:border-orange-400 hover:bg-orange-500")}
+              className={cn(
+                buttonVariants({ variant: "secondary" }),
+                "m-auto flex rounded-md border-t-2 border-orange-500 bg-orange-600 text-lg font-medium transition-colors duration-200 ease-in-out hover:border-orange-400 hover:bg-orange-500"
+              )}
             >
               <span className="font-medium text-white">Try For Free!</span>
             </Link>

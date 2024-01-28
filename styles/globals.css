@@ -42,12 +42,12 @@
 }
 
 .botImage {
-  animation: blurIn 1s ease-in-out;
+  animation: fadeIn 1s ease-in-out !important;
 }
 
 @keyframes fadeIn {
   0% {
-    filter: blur(1.5rem);
+    filter: blur(1rem) brightness(0.5);
   }
   100% {
     filter: blur(0rem);
@@ -64,16 +64,18 @@
   animation: appear 500ms 0.2s ease forwards;
 }
 
-.imgCard{
+.imgCard {
   animation: moveAround 500ms ease-in-out;
 }
 
 @keyframes moveAround {
   0% {
-    transform: perspective(1000px) rotateX(20deg) rotateY(20deg) scale3d(1, 1, 1);
+    transform: perspective(1000px) rotateX(20deg) rotateY(20deg)
+      scale3d(1, 1, 1);
   }
   50% {
-    transform: perspective(1000px) rotateX(-10deg) rotateY(-10deg) scale3d(1, 1, 1);
+    transform: perspective(1000px) rotateX(-10deg) rotateY(-10deg)
+      scale3d(1, 1, 1);
   }
   100% {
     transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
