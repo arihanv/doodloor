@@ -22,9 +22,9 @@ export default async function Gallery({}: Props) {
   return (
     <section className="appearQuick container grid max-h-screen gap-6 pb-8 pt-6">
       <div className="grid grid-cols-4 flex-col gap-4">
-        {galleryData?.map((row: GalleryRow) => {
+        {galleryData?.map((row: GalleryRow, index: number) => {
           return (
-            <div>
+            <div key={index}>
               <TiltCard
                 scale={1}
                 user_name={row.user_name}
