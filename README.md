@@ -1,22 +1,14 @@
-# next-template
+# Doodloor
 
-A Next.js 13 template for building apps with Radix UI and Tailwind CSS.
+Turn your boring doodles into beautiful art. More info to come once I get some sleep
 
 ## Usage
+Fill in the env vars
 
 ```bash
-npx create-next-app -e https://github.com/shadcn/next-template
+bun i
+bun run deb
 ```
 
 ## Features
-
-- Next.js 13 App Directory
-- Radix UI Primitives
-- Tailwind CSS
-- Icons from [Lucide](https://lucide.dev)
-- Dark mode with `next-themes`
-- Tailwind CSS class sorting, merging and linting.
-
-## License
-
-Licensed under the [MIT license](https://github.com/shadcn/ui/blob/main/LICENSE.md).
+- Generate images given an image and a prompt
