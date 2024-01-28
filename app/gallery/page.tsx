@@ -6,7 +6,7 @@ import supabase from "../api/supabaseServer"
 
 type Props = {}
 
-export const revalidate = 30
+export const revalidate = 15
 
 type GalleryRow = {
   id: number
