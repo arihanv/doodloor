@@ -2,18 +2,19 @@
 
 import React from "react"
 import Image from "next/image"
-import { Check, SendIcon } from "lucide-react"
+import { Check, Redo, RotateCw, SendIcon, Undo } from "lucide-react"
 import { ReactSketchCanvas } from "react-sketch-canvas"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import ArtSaver from "@/components/art-saver"
 
 import { cn } from "../../lib/utils"
 
 type Props = {}
 
 export default function StudioPage({}: Props) {
-  const [imageUrl, setImageUrl] = React.useState(null)
+  const [imageUrl, setImageUrl] = React.useState("")
   const [timeDiff, setTimeDiff] = React.useState<undefined | number>()
   const [prompt, setPrompt] = React.useState("")
   const drawingCanvas = React.useRef(null)
@@ -48,7 +49,7 @@ export default function StudioPage({}: Props) {
 
   return (
     <div className="container flex max-h-screen max-w-6xl flex-col items-center justify-center ">
-      <div className="appearQuick flex w-full flex-col items-center gap-3 rounded-xl border border-zinc-800/50 border-b-zinc-900/40 border-t-zinc-700/60 bg-gradient-to-b from-zinc-800/40 via-zinc-900/50 to-zinc-900/40 px-5 py-3 sm:h-[35rem]">
+      <div className="appearQuick flex w-full flex-col items-center gap-3 rounded-xl border border-zinc-800/50 border-b-zinc-900/40 border-t-zinc-700/60 bg-gradient-to-b from-zinc-800/40 via-zinc-900/50 to-zinc-900/40 px-5 py-3">
         <span className="font-medium text-zinc-500">
           Stable Diffusion v1.5 + ControlNet
         </span>
@@ -59,15 +60,29 @@ export default function StudioPage({}: Props) {
                 backgroundImage="black"
                 ref={drawingCanvas}
                 strokeWidth={10}
+                eraserWidth={20}
                 className="relative h-full !rounded-none !border-none bg-black/50"
                 strokeColor="white"
               />
               <div className="absolute inset-0 -z-10 m-auto flex select-none items-center justify-center opacity-30">
                 Draw Here
               </div>
+              <div className="absolute right-0 top-0 mx-auto flex gap-2 rounded-bl-lg border-b border-l bg-zinc-800/40 px-2 py-1 text-zinc-400">
+                <button onClick={() => (drawingCanvas.current as any).undo()}>
+                  <Undo />
+                </button>
+                <button>
+                  <Redo onClick={() => (drawingCanvas.current as any).redo()} />
+                </button>
+                <button
+                  onClick={() => (drawingCanvas.current as any).resetCanvas()}
+                >
+                  <RotateCw size={20} />
+                </button>
+              </div>
             </div>
           </div>
-          <div className="relative flex-1 overflow-hidden rounded-lg border border-input">
+          <div className="relative h-fit flex-1 overflow-hidden rounded-lg border border-input">
             {imageUrl && (
               <Image
                 width={50}
@@ -79,7 +94,16 @@ export default function StudioPage({}: Props) {
                 src={imageUrl}
               ></Image>
             )}
-            {timeDiff && <div className={cn("absolute bottom-0 right-0 py-0.5 px-3 text-sm bg-zinc-800 border-2 border-zinc-700 rounded-xl m-1 font-mono flex gap-2 opacity-100 transition-opacity ease-in-out duration-200", {"opacity-0":loading})}>{timeDiff}s</div>}
+            {timeDiff && (
+              <div
+                className={cn(
+                  "absolute bottom-0 right-0 m-1 flex gap-2 rounded-xl border-2 border-zinc-700 bg-zinc-800 px-3 py-0.5 font-mono text-sm opacity-100 transition-opacity duration-200 ease-in-out",
+                  { "opacity-0": loading }
+                )}
+              >
+                {timeDiff}s
+              </div>
+            )}
           </div>
         </div>
         <div className="flex w-full gap-2">
