@@ -15,17 +15,30 @@ import { Button } from "./ui/button"
 import Link from "next/link"
 
 type Props = {
-  imageUrl: string
+  imageBlob: Blob
   prompt: string
 }
 
-export default function ArtSaver({ imageUrl, prompt }: Props) {
+export default function ArtSaver({ imageBlob, prompt }: Props) {
   const [open, setOpen] = React.useState(false)
   const session = useSession()
+
+  async function publishToGallery(image: Blob) {
+    const formData = new FormData()
+    formData.append("image", image)
+    formData.append("prompt", prompt)
+    const res = await fetch("/api/uploadImage", {
+      method: "POST",
+      body: formData,
+    })
+    console.log(res)
+    return
+  }
+
   return (
     <div>
       <Dialog open={open} onOpenChange={() => setOpen(!open)}>
-        <DialogTrigger disabled={!imageUrl || !prompt} asChild>
+        <DialogTrigger disabled={!imageBlob || !prompt} asChild>
           <Button
             className=" border border-green-700/20 bg-green-800/20 hover:bg-green-800/50"
             variant={"outline"}
@@ -47,7 +60,7 @@ export default function ArtSaver({ imageUrl, prompt }: Props) {
               <Image
                 alt="Generated Image"
                 className="size-full"
-                src={imageUrl}
+                src={URL.createObjectURL(imageBlob)}
                 height={50}
                 width={50}
               ></Image>
@@ -69,10 +82,10 @@ export default function ArtSaver({ imageUrl, prompt }: Props) {
               >
                 <X size={20} />
               </button>
-              <button className="rounded-lg border bg-zinc-900/50 px-3 py-0.5 font-medium">
+              <button onClick={() => publishToGallery(imageBlob)} className="rounded-lg border bg-zinc-900/50 px-3 py-0.5 font-medium">
                 Publish To Gallery
               </button>
-              <Link download={Math.floor(Math.random() * 100000).toString() + ".png"} href={imageUrl} className="rounded-lg border bg-zinc-900/50 px-3 py-1 font-medium">
+              <Link download={Math.floor(Math.random() * 100000).toString() + ".png"} href={URL.createObjectURL(imageBlob)} className="rounded-lg border bg-zinc-900/50 px-3 py-1 font-medium">
                 <Download size={20}/>
               </Link>
             </div>
