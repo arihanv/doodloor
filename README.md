@@ -7,7 +7,7 @@ Fill in the env vars
 
 ```bash
 bun i
-bun run deb
+bun run dev
 ```
 
 ## Features
