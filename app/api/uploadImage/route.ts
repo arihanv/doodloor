@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/authOptions"
 
 import supabase from "@/app/api/supabaseServer"
@@ -10,7 +10,7 @@ type ImageUpload = {
   fullPath: string
 }
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   const session = await auth()
   const body = await req.formData()
 
